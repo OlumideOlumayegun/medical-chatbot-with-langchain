@@ -37,7 +37,7 @@ jobs:
 
   Continuous-Deployment:
     needs: Continuous-Integration
-    runs-on: self-hosted
+    runs-on: ip-172-31-29-244
     steps:
       - name: Checkout
         uses: actions/checkout@v3
