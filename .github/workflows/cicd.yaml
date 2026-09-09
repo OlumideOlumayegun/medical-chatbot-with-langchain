@@ -39,7 +39,7 @@ jobs:
 
   Continuous-Deployment:
     needs: Continuous-Integration
-    runs-on: ip-172-31-29-244
+    runs-on: [self-hosted, linux, x64] #ip-172-31-29-244
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -52,8 +52,10 @@ jobs:
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+        id: login-ecr-public
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+         registry-type: public
 
       - name: Run Docker Image to serve users
         run: |
